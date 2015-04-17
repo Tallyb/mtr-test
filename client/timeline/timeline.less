@@ -1,0 +1,109 @@
+@tl-interval-width: 100px;
+@tl-color: #0199A6;
+@tl-selected-color: #AE0000;
+
+
+.timeline {
+  height: 70px;
+  li {
+    list-style-type: none;
+    position: relative;
+    min-width: 100px;
+    box-sizing: border-box;
+    height: 20px;
+    text-align: center;
+  }
+
+  .line-border {
+    border-bottom: 4px solid @tl-color;
+  }
+
+  .tick-border {
+    border-left: 2px solid @tl-color;
+  }
+
+  li:last-child.tick-border {
+    border-right: 2px solid @tl-color;
+  }
+}
+
+.timeline-height {
+  margin-top: 22px;
+}
+
+// interval positioning classes
+.interval-begin {
+  position: absolute;
+  //box-sizing: border-box;
+  min-width: 100px;
+  right:   49%;
+  text-align:center;
+}
+
+.interval-top {
+  top: -20px;
+}
+
+.interval-bottom {
+  height: 40px;
+  top: 40px;
+}
+
+.interval-on {
+  top: 10px;
+}
+
+
+//interval elements classes
+
+.tl-interval-label{ //interval label (the unit) and the timeline borders
+  font-size: 11px;
+  text-align: center;
+}
+
+.tl-ms-label {
+  display: inline-block;
+  background: @tl-color;
+  border-radius: 2px;
+  width: 40px;
+  text-align: center;
+  font-size: 14px;
+  color: white;
+  cursor: pointer;
+}
+
+.tl-ms-label-active {
+  background-color: @tl-selected-color;
+}
+
+.tl-select {
+  box-sizing: border-box;
+  display: inline-block;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  border: 4px solid;
+}
+
+//
+.tl-select-inactive {
+  background-color: @tl-color;
+  border-color: white;
+}
+
+.tl-select-active {
+  background-color: @tl-selected-color;
+  border-color: white;
+
+}
+
+.tl-select-compare-inactive {
+  background-color: grey;
+  border-color: white;
+}
+
+.tl-select-compare-active {
+  border-color: @tl-selected-color;
+  background-color: white;
+
+}

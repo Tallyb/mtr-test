@@ -1,0 +1,33 @@
+<div class="timeline" ng-controller="TimelineCtrl as TimelineCtrl">
+    <ul layout="row" class="timeline timeline-height">
+        <li ng-repeat="interval in timeline"  ng-init="intervalIndex = $index" class="line-border tick-border" ng-style="intervalWidth()">
+            <div class="tl-interval">
+                <div class="tl-interval-label"> {{interval.label()}} </div>
+                <div class="interval-begin interval-top"
+                     ng-click = "updateMilestone (interval.ms)"
+                     ui-draggable="true" drag="interval.offset"
+                     ui-on-drop="msOnDrop (intervalIndex, $data)"
+                     drop-validate="msDropValidate (intervalIndex, $data)">
+                    <span ng-show="interval.isMS()" ng-class="{'tl-ms-label': true, 'tl-ms-label-active':isSelectedInterval(intervalIndex)}">
+                      {{interval.msCode()}}
+                    </span>
+                </div>
+
+                <div class="interval-begin interval-on" ng-click="selectInterval(intervalIndex,interval)">
+                    <div ng-class="{'tl-select':true, 'tl-select-inactive': true, 'tl-select-active':isSelectedInterval(intervalIndex)}"
+                         ng-show="interval.isMS()">
+                    </div>
+                </div>
+
+                <div  class="interval-begin interval-bottom" >
+                    <div ng-show="interval.isMS() && !isSelectedInterval(intervalIndex)"
+                         ng-class="{'tl-select': true, 'tl-select-compare-inactive': true, 'tl-select-compare-active': isSelectedCompare(intervalIndex)}"
+                         ng-click="selectCompare(intervalIndex)">
+                    </div>
+                </div>
+
+            </div>
+
+        </li>
+    </ul>
+</div>

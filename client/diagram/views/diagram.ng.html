@@ -1,0 +1,47 @@
+<div layout="column">
+    <md-toolbar class="md-medium-tall" >
+        <div layout="row" layout-align="space-between center">
+            <div flex="25" layout="row" layout-align = "start center" layout-padding>
+                <md-button class="mdi mdi-home" ui-sref="home" >
+                </md-button>
+                <h3>{{details.name}} </h3>
+            </div>
+            <div flex = "50" >
+                <md-tabs md-stretch-tabs="never">
+                    <md-tab label="Diagram" ui-sref="diagram.canvas" md-active="$state.includes('diagram.canvas')"></md-tab>
+                    <md-tab label="Timeview" ui-sref="diagram.timeview" md-active="$state.includes('diagram.timeview')"></md-tab>
+                    <md-tab label="Element" ui-sref="diagram.element" md-active="$state.includes('diagram.element')"></md-tab>
+                </md-tabs>
+            </div>
+            <div flex="25" layout="row" layout-align="end center">
+                <md-button ng-click="editSettings()" aria-label="settings">
+                    <i class="mdi mdi-settings"> </i>
+                </md-button>
+                <div ng-mouseover="zoom=true" ng-mouseleave="zoom=false">
+                    <md-button ng-click="zoomin()" ng-show="zoom" aria-label="zoom in">
+                        <i class="mdi mdi-magnify-minus"> </i>
+                    </md-button>
+                    <md-button ng-click="zoomout()" ng-show="zoom" aria-label="zoom out">
+                        <i class="mdi mdi-magnify-plus"> </i>
+                    </md-button>
+                    <md-button ng-click="zoomfull()" aria-label="full page">
+                        <i class="mdi mdi-google-pages"> </i>
+                    </md-button>
+                </div>
+                <md-button >
+                    <i class="mdi mdi-filter" aria-label="filter"> </i>
+                </md-button>
+            </div>
+        </div>
+    </md-toolbar>
+
+    <div class="timeline-toolbar" layout="row" layout-fill >
+        <div ui-view="diagramMenu"> </div>
+        <div ng-include ="'client/timeline/timeline.ng.html'"></div>
+    </div>
+
+    <md-divider></md-divider>
+    <md-content>
+        <div ui-view="diagram"></div>
+    </md-content>
+</div>

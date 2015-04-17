@@ -1,0 +1,45 @@
+<md-dialog>
+    <md-content>
+        <md-subheader class="md-sticky-no-effect">Diagram Settings</md-subheader>
+
+        <form name="Details" novalidate>
+
+            <md-input-container>
+                <label> Name</label>
+                <md-input type="text" name="name" id = "name" ng-model="DiagramSettingsCtrl.details.name" required>
+                </md-input>
+            </md-input-container>
+
+            <md-input-container>
+                <label> Description </label>
+                <textarea ng-model="DiagramSettingsCtrl.details.description" ></textarea>
+            </md-input-container>
+
+            <label> Units </label> <br>
+            <md-select ng-model="DiagramSettingsCtrl.details.unit" required placeholder="Select Diagram Units">
+                <md-option ng-value="unit.name" ng-repeat="unit in DiagramSettingsCtrl.units.data">{{ unit.name }}</md-option>
+            </md-select>
+            <p class="result">{{ unit.name }}</p>
+
+            <md-input-container>
+                <label> Total intervals </label>
+                <md-input type="number" data-ng-model="DiagramSettingsCtrl.details.totalIntervals" required
+                          min="DiagramSettingsCtrl.minIntervals()" max="99" >
+                </md-input>
+            </md-input-container>
+
+            <md-input-container>
+                <label> start date</label>
+                <md-input name = "startDate" type="date">
+                </md-input>
+            </md-input-container>
+
+        </form>
+
+        <div class="md-actions" layout="row">
+            <md-button class="md-colored" ng-click="$mdDialog.cancel()">cancel</md-button>
+            <md-button type="submit" ng-click="DiagramSettingsCtrl.ok()" ng-disabled="Details.$invalid || Details.$pristine">OK</md-button>
+        </div>
+    </md-content>
+
+</md-dialog>
