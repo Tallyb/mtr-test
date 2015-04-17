@@ -6,17 +6,25 @@
 
     angular.module('morffy').controller('DiagramCtrl', function DiagramCtrl  ($scope, $mdDialog, $log, $state, $rootScope, $stateParams, $meteor, TimelineSvc ) {
 
-        $scope.diagram = $meteor.object ('diagrams', $stateParams.diagramId);
-        $scope.elements = $meteor.collection ('elements');
+        var diagrams = $meteor.collection (Diagrams);
+        $scope.diagram = $meteor.object (diagrams, $stateParams.diagramId);
 
         $scope.elements = $meteor.collection(function() {
-            return Elements.find({diagram_id: $scope.diagram.oid}, {
+            return Elements.find({diagram_id: $scope.diagram._id}, {
             });
         });
         $scope.timeline = TimelineSvc.get ($scope.diagram);
 
         $scope.editSettings = function () {
-            $state.go ('diagram.settings');
+            $mdDialog.show({
+                templateUrl: 'client/diagram/views/diagram-settings.ng.html',
+                controller: 'diagramSettingsCtrl',
+                resolve: {
+                    diagramDetails: function () {
+                        return ($scope.diagram);
+                    }
+                }
+            });
         };
 
         //$scope.selectedElement = ElementSvc.selectedElement;

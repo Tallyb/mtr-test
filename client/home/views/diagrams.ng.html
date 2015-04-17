@@ -23,10 +23,10 @@
             <md-card layout="column" flex="33"
                      ng-repeat="diagram in diagrams | filter:search" >
                 <md-subheader>
-                    <h2 > {{diagram.name}} </h2>
+                    <a ui-sref="diagram.canvas ({diagramId: diagram._id})"> <h2 > {{diagram.name}} </h2></a>
                 </md-subheader>
                     <div layout="row" layout-align="space-between">
-                        <md-button class="md-raised" aria-label="open" ng-click="openDiagram(diagram.id)">
+                        <md-button class="md-raised" aria-label="open" ng-click="openDiagram(diagram._id)">
                             <i class="mdi mdi-open"></i>
                         </md-button>
 
