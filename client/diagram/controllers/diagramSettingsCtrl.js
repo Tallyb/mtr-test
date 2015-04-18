@@ -14,7 +14,7 @@
         $scope.ok = function () {
             $scope.diagrams.save($scope.diagramDetails). then (function (response){
                 $mdDialog.hide();
-                $state.go ('diagram.canvas', {diagramId: response._oid});
+                $state.go ('diagram.canvas', {diagramId: response._id});
             });
         };
 
