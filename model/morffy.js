@@ -2,5 +2,5 @@
  * Created by Tally on 12/04/2015.
  */
 
-Diagrams = new Mongo.Collection("diagrams");
-Elements = new Mongo.Collection ("elements");
+DiagramsModel = new Mongo.Collection("diagrams");
+ElementsModel = new Mongo.Collection ("elements");

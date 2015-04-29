@@ -8,7 +8,7 @@
 
         /* adding a diagram in a modal window when pressing the new diagram button and going to the diagram screen */
 
-        $scope.diagrams =  $meteor.collection (Diagrams);
+        $scope.diagrams =  $meteor.collection (DiagramsModel);
 
         $scope.createDiagram = function () {
             $mdDialog.show({
