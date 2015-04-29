@@ -11,7 +11,7 @@ angular.module('morffy',[
 ]);
 
 angular.module ('morffy').config (function ($mdThemingProvider){
-/*        $mdThemingProvider.definePalette('morffy', {
+        $mdThemingProvider.definePalette('morffy', {
             '50': 'FFFFFF',
             //'50': 'DEF2F4',
             //'100': 'B0DFE3',
@@ -54,7 +54,7 @@ angular.module ('morffy').config (function ($mdThemingProvider){
         });
 
         $mdThemingProvider.theme('default').primaryPalette('morffy').accentPalette ('morffyAlt');
- */
+
 });
 
 
