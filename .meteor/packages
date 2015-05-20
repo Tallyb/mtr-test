@@ -11,4 +11,4 @@ urigo:angular
 angularui:angular-ui-router
 erasaur:meteor-lodash
 less
-angular:material
+angular:angular-material
