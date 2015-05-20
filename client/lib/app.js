@@ -2,12 +2,16 @@
  * Created by Tally on 11/04/2015.
  */
 
+Accounts.ui.config({
+    passwordSignupFields: "EMAIL_ONLY"
+});
 
 angular.module('morffy',[
     'angular-meteor',
     'ngMaterial',
     'ui.router',
-    'ngAnimate'
+    'ngAnimate',
+    'morffy.diagram'
 ]);
 
 angular.module ('morffy').config (function ($mdThemingProvider){
@@ -58,66 +62,16 @@ angular.module ('morffy').config (function ($mdThemingProvider){
 });
 
 
-angular.module('morffy').config(function AppConfig ( $stateProvider, $urlRouterProvider,$locationProvider ){
+angular.module('morffy').config(function  ( $stateProvider, $urlRouterProvider,$locationProvider ){
     $locationProvider.html5Mode(true);
 
-    $stateProvider.state('home', {
+    $stateProvider.state('main', {
         url: '/',
-        templateUrl: 'client/home/views/diagrams.ng.html',
+        templateUrl: 'client/main/views/main.ng.html',
         controller: 'HomeCtrl'
     });
 
-    $stateProvider.state ('diagram',{
-        url: '/diagram/:diagramId',
-        abstract: true,
-        templateUrl: 'client/diagram/views/diagram.tpl.html',
-        controller: 'DiagramCtrl'
-    });
 
-    $stateProvider.state ('diagram.canvas',{
-        url:'/canvas' ,
-        sticky: true,
-        views: {
-            diagram: {
-                templateUrl: 'client/canvas/views/canvas.tpl.html',
-                controller: 'CanvasCtrl'
-            },
-            diagramMenu: {
-                templateUrl: 'client/diagram/views/diagram-menu.ng.html',
-                controller: 'DiagramMenuCtrl'
-            }
-        }
-    });
-
-    $stateProvider.state ('diagram.timeview',{
-        url:'/timeview' ,
-        sticky: true,
-        views: {
-            diagram: {
-                templateUrl: 'client/timeview/views/timeview.ng.html',
-                controller: 'TimeviewCtrl'
-            },
-            diagramMenu: {
-                templateUrl: 'client/diagram/views/diagram-menu.ng.html',
-                controller: 'DiagramMenuCtrl'
-            }
-        }
-    });
-
-    $stateProvider.state ('diagram.element',{
-        url:'/element/{elementId}' ,
-        sticky: true,
-        views: {
-            diagram: {
-                templateUrl: 'client/element/views/element.ng.html',
-                controller: 'ElementCtrl'
-            },
-            diagramMenu: {
-                templateUrl: 'client/element/views/element-menu.ng.html',
-                controller: 'DiagramMenuCtrl'
-            }
-        }
-    });
     $urlRouterProvider.otherwise( '/' );
 
 });

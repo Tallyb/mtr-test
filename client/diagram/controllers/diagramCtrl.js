@@ -7,7 +7,7 @@
     angular.module('morffy').controller('DiagramCtrl', function DiagramCtrl  ($scope, $mdDialog, $log, $state, $rootScope, $stateParams, $meteor, TimelineSvc ) {
 
 
-        $scope.inDiagrams = $meteor.collection (DiagramsModel);
+        $scope.diagrams = $meteor.collection (DiagramsModel);
         var temp = DiagramsModel.findOne({_id: $stateParams.diagramId});
         //$scope.diagram = $meteor.object (DiagramsModel, $stateParams.diagramId);
 

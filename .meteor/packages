@@ -12,3 +12,7 @@ angularui:angular-ui-router
 erasaur:meteor-lodash
 less
 angular:angular-material
+alethes:lodash
+accounts-ui
+accounts-password
+fourseven:scss

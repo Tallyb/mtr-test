@@ -1,0 +1,100 @@
+<div>
+    <!--
+        <canvas class="main-content" id="Canvas" width="600" height="600" style="border:1px solid #EEE">
+            Browser does not support canvas
+        </canvas>
+    -->
+
+    <svg  xmlns="http://www.w3.org/2000/svg"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          width="100%" height="1000px" >
+        Browser does not support canvas
+        <defs>
+            <marker id="markerCircle" markerWidth="8" markerHeight="8" refx="5" refy="5">
+                <circle cx="5" cy="5" r="3" style="stroke: none; fill:#000000;"></circle>
+            </marker>
+
+            <marker id="markerArrow" markerWidth="13" markerHeight="13" refx="2" refy="6"
+                    orient="auto">
+                <path d="M2,2 L2,11 L10,6 L2,2" style="fill: #000000;" ></path>
+            </marker>
+            <pattern id="smallGrid" width="10" height="10" patternUnits="userSpaceOnUse">
+                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#81CDD3" stroke-width="0.5"></path>
+            </pattern>
+        </defs>
+
+        <rect width="100%" height="100%" fill="url(#smallGrid)" ></rect>
+
+        <g ng-repeat="entity in CanvasCtrl.entities | showOnMilestone: CanvasCtrl.selectedInterval(): CanvasCtrl.comparedInterval()"
+           ng-attr-transform="translate({{entity.x()}}, {{entity.y()}})">
+            <rect
+                    x="0" y="0"
+                    ng-attr-width="{{entity.width()}}"
+                    ng-attr-height="{{entity.height()}}"
+                    fill="white"  stroke-width="2" rx="5" ry="5" ng-attr-stroke="{{entity.color()}}">
+            </rect>
+            <canvas-icon ng-attr-p="{{entity.iconName()}}"></canvas-icon>
+            <text x="10" y="60" font-family = "Roboto" font-size="16px" text-anchor="left" alignment-baseline="bottom" fill="black">
+                {{entity.name()}}
+            </text>
+            <animate attributeType="CSS" attributeName="opacity" from="0" to="1" begin="1s" dur="1s"  ></animate>
+            <animate attributeType="CSS" attributeName="opacity" from="1" to="0" begin="3s" dur="1s"  ></animate>
+        </g>
+
+        <g ng-repeat="connector in CanvasCtrl.connectors | showOnMilestone: CanvasCtrl.selectedInterval(): CanvasCtrl.comparedInterval()" transform="translate (0, 0) ">
+            <path ng-attr-d="{{connector.path()}}" ng-attr-stroke="{{connector.color()}}"
+                  style="stroke-width: 1px; fill: none;
+                   marker-start: url(#markerCircle);
+                   marker-end: url(#markerArrow);" ></path>
+            <rect ng-attr-x="{{connector.labelBoxX()}}"
+                  ng-attr-y="{{connector.labelBoxY()}}"
+                  width="60" height="20"
+                  fill="white" stroke="transparent"></rect>
+            <text ng-attr-x="{{connector.labelX()}}"
+                  ng-attr-y="{{connector.labelY()}}"
+                  font-family ="Roboto" font-size="12px" text-anchor="middle" alignment-baseline="middle" fill="black">{{connector.code()}}</text>
+        </g>
+    </svg>
+
+</div>
+
+<!--
+<g transform="translate (100, 300) ">
+    <rect x="0" y="0" width="160px" height="80px" style="fill:white"
+          stroke="#0199A6" stroke-width="2" rx="5px" ry="5" />
+    <text x="10" y="30" font-family ="FontAwesome" text-anchor="left" alignment-baseline="top" fill="black">&#xf108</text>
+    <text x="10" y="60" font-family = "Roboto" text-anchor="left" alignment-baseline="bottom" fill="black">
+        CRM
+    </text>
+
+
+</g>
+
+<g transform="translate (100, 100) ">
+    <rect x="0" y="0" width="160px" height="80px" style="fill:white"
+          stroke="#0199A6" stroke-width="2" rx="5" ry="5" />
+    &lt;!&ndash;
+            <circle cx="80" cy="0" r="5" fill="grey"> </circle>
+            <circle cx="0" cy="40" r="5" fill="grey"> </circle>
+            <circle cx="160" cy="40" r="5" fill="grey"> </circle>
+            <circle cx="80" cy="80" r="5" fill="grey"> </circle>
+    &ndash;&gt;
+    <text x="10" y="30" font-family ="FontAwesome" font-size="20px" text-anchor="left" alignment-baseline="top" fill="black">&#xf1c0</text>
+    <text x="10" y="60" font-family = "Roboto" font-size="16px" text-anchor="left" alignment-baseline="bottom" fill="black">
+        Customers
+    </text>
+    <animate attributeType="CSS" attributeName="opacity" from="0" to="1" begin="3s" dur="1s"  />
+    <animate attributeType="CSS" attributeName="opacity" from="1" to="0" begin="5s" dur="1s"  />
+</g>
+        <g transform="translate (0, 0) ">
+            <path d="M 180,380
+                L 180,440 L390,440" stroke="black"
+                  style=" marker-start: url(#markerCircle); marker-end: url(#markerArrow); fill:none;"/>
+            <rect x="250" y="430" width="60" height="20" fill="white" stroke="transparent"></rect>
+            <text x="280" y="440" font-family ="Roboto" font-size="12px" text-anchor="middle" alignment-baseline="middle" fill="black">I13</text>
+            <animate attributeType="CSS" attributeName="opacity" from="0" to="1" begin="1s" dur="1s"  />
+            <animate attributeType="CSS" attributeName="opacity" from="1" to="0" begin="3s" dur="1s"  />
+
+        </g>
+
+-->

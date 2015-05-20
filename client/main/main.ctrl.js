@@ -5,11 +5,9 @@
 (function (){
     angular.module('morffy').controller('HomeCtrl', function ($scope, $log, $state, $meteor, $mdDialog) {
 
-
-        /* adding a diagram in a modal window when pressing the new diagram button and going to the diagram screen */
-
         $scope.diagrams =  $meteor.collection (DiagramsModel);
 
+        /* adding a diagram in a modal window when pressing the new diagram button and going to the diagram screen */
         $scope.createDiagram = function () {
             $mdDialog.show({
                 templateUrl: 'client/diagram/views/diagram-settings.ng.html',
