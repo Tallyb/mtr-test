@@ -4,5 +4,5 @@
 
 _ = lodash;
 
-DiagramsModel = new Mongo.Collection("diagrams");
+DiagramsModel = new Mongo.Collection("diagrams" ,{idGeneration: 'MONGO'});
 ElementsModel = new Mongo.Collection ("elements");

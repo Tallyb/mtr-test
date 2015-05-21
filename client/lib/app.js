@@ -12,9 +12,9 @@ angular.module('morffy',[
     'ui.router',
     'ngAnimate',
     'morffy.diagram'
-]);
+])
 
-angular.module ('morffy').config (function ($mdThemingProvider){
+.config (function ($mdThemingProvider){
         $mdThemingProvider.definePalette('morffy', {
             '50': 'FFFFFF',
             //'50': 'DEF2F4',
@@ -59,10 +59,15 @@ angular.module ('morffy').config (function ($mdThemingProvider){
 
         $mdThemingProvider.theme('default').primaryPalette('morffy').accentPalette ('morffyAlt');
 
-});
+})
 
+.config(function($mdIconProvider) {
+    // Configure URLs for icons specified by [set:]id.
+    $mdIconProvider
+        .iconSet('mdi','public/fonts/mdi/fonts/materialdesignicons-webfont.svg');       // Register mdi set of SVG icons
+})
 
-angular.module('morffy').config(function  ( $stateProvider, $urlRouterProvider,$locationProvider ){
+.config(function  ( $stateProvider, $urlRouterProvider,$locationProvider ){
     $locationProvider.html5Mode(true);
 
     $stateProvider.state('main', {
@@ -70,7 +75,6 @@ angular.module('morffy').config(function  ( $stateProvider, $urlRouterProvider,$
         templateUrl: 'client/main/views/main.ng.html',
         controller: 'HomeCtrl'
     });
-
 
     $urlRouterProvider.otherwise( '/' );
 

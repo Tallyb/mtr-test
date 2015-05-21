@@ -2,7 +2,7 @@
     <md-toolbar class="md-medium-tall" >
         <div layout="row" layout-align="space-between center">
             <div flex="25" layout="row" layout-align = "start center" layout-padding>
-                <md-button class="mdi mdi-home" ui-sref="home" >
+                <md-button class="mdi mdi-home" ui-sref="main" >
                 </md-button>
                 <h3>{{diagramDetails.name}} </h3>
             </div>
@@ -37,7 +37,7 @@
 
     <div class="timeline-toolbar" layout="row" layout-fill >
         <div ui-view="diagramMenu"> </div>
-        <div ng-include ="'client/timeline/timeline.ng.html'"></div>
+        <diagram-timeline></diagram-timeline>
     </div>
 
     <md-divider></md-divider>

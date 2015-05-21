@@ -1,20 +1,30 @@
 /**
  * Created by Tally on 20/05/2015.
  */
+'use strict';
+
 angular.module ('morffy.diagram', [
     'angular-meteor',
     'ngMaterial',
     'ui.router',
-    'ngAnimate'
+    'ngAnimate',
+    'morffy.canvas'
+])
 
-]);
-
-angular.module ('morffy.diagram'). config  (function ($stateProvider){
+.config (function ($stateProvider){
     $stateProvider.state ('diagram',{
         url: '/diagram/:diagramId',
         abstract: true,
         templateUrl: 'client/diagram/views/diagram.ng.html',
-        controller: 'DiagramCtrl'
+        controller: 'DiagramCtrl',
+        resolve: {
+            diagram: function ($stateParams, $meteor) {
+                return $meteor.object (DiagramsModel, $stateParams.diagramId);
+            },
+            elements: function ($stateParams, $meteor) {
+                return $meteor.collection (ElementsModel, {diagramId: $stateParams.diagramId});
+            }
+        }
     });
 
     $stateProvider.state ('diagram.canvas',{
