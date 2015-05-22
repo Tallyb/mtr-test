@@ -7,7 +7,7 @@
 describe('units label service',function (){
     var unitsSvc;
     beforeEach (function (){
-        module('morffy.diagram');
+        angular.module('morffy.diagram');
         inject(function (_unitsSvc_) {
             unitsSvc = _unitsSvc_;
         });

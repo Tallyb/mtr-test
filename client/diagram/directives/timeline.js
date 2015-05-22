@@ -6,6 +6,7 @@
 angular.module ('morffy.diagram').directive ('diagramTimeline', function (){
     function ctrl ($scope, TimelineSvc){
         $scope.timeline = TimelineSvc.get ($scope.diagram);
+
     }
 
     return {

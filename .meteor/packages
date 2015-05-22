@@ -5,7 +5,6 @@
 # but you can also edit it by hand.
 
 meteor-platform
-autopublish
 insecure
 urigo:angular
 angularui:angular-ui-router
@@ -15,3 +14,5 @@ angular:angular-material
 alethes:lodash
 accounts-ui
 accounts-password
+sanjo:jasmine
+velocity:html-reporter

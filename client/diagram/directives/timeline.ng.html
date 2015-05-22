@@ -2,7 +2,7 @@
     <ul layout="row" class="timeline timeline-height">
         <li ng-repeat="interval in timeline"  ng-init="intervalIndex = $index" class="line-border tick-border" ng-style="intervalWidth()">
             <div class="tl-interval">
-                <div class="tl-interval-label"> {{interval.label()}} </div>
+                <div class="tl-interval-label"> {{interval.label}} </div>
                 <div class="interval-begin interval-top"
                      ng-click = "updateMilestone (interval.ms)"
                      ui-draggable="true" drag="interval.offset"
@@ -25,9 +25,7 @@
                          ng-click="selectCompare(intervalIndex)">
                     </div>
                 </div>
-
             </div>
-
         </li>
     </ul>
 </div>

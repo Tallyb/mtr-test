@@ -2,26 +2,24 @@
  * Created by Tally on 14/04/2015.
  */
 
-(function (){
-    'use strict';
+'use strict';
 
-    angular.module('morffy').controller('diagramSettingsCtrl', function ($scope, $mdDialog, $log, $state, units, $meteor, diagramDetails) {
+angular.module('morffy').controller('diagramSettingsCtrl', function ($scope, $mdDialog, $log, $state, unitsSvc, $meteor, diagramDetails) {
 
-        $scope.units = units;
 
-        $scope.diagramDetails = diagramDetails;
+    $scope.units = unitsSvc.get();
 
-        $scope.ok = function () {
-            $scope.diagrams.save($scope.diagramDetails). then (function (response){
-                $mdDialog.hide();
-                $state.go ('diagram.canvas', {diagramId: response._id});
-            });
-        };
+    $scope.diagramDetails = diagramDetails;
 
-        $scope.cancel = function () {
+    $scope.ok = function () {
+        $scope.diagramDetails.save($scope.diagramDetails).then (function (response){
             $mdDialog.hide();
-        };
-    });
+            $state.go ('diagram.canvas', {diagramId: response._id});
+        });
+    };
 
-})();
+    $scope.cancel = function () {
+        $mdDialog.hide();
+    };
+});
 

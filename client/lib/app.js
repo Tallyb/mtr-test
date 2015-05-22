@@ -61,11 +61,11 @@ angular.module('morffy',[
 
 })
 
-.config(function($mdIconProvider) {
-    // Configure URLs for icons specified by [set:]id.
-    $mdIconProvider
-        .iconSet('mdi','public/fonts/mdi/fonts/materialdesignicons-webfont.svg');       // Register mdi set of SVG icons
-})
+//.config(function($mdIconProvider) {
+//    // Configure URLs for icons specified by [set:]id.
+//    $mdIconProvider
+//        .iconSet('mdi','public/fonts/mdi/fonts/materialdesignicons-webfont.svg');       // Register mdi set of SVG icons
+//})
 
 .config(function  ( $stateProvider, $urlRouterProvider,$locationProvider ){
     $locationProvider.html5Mode(true);

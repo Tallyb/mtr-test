@@ -19,10 +19,10 @@ angular.module ('morffy.diagram', [
         controller: 'DiagramCtrl',
         resolve: {
             diagram: function ($stateParams, $meteor) {
-                return $meteor.object (DiagramsModel, $stateParams.diagramId);
+                return $meteor.object (DiagramsModel, new Mongo.ObjectID( $stateParams.diagramId));
             },
-            elements: function ($stateParams, $meteor) {
-                return $meteor.collection (ElementsModel, {diagramId: $stateParams.diagramId});
+            diagramElements: function ($stateParams, $meteor) {
+                return $meteor.subscribe('elements', new Mongo.ObjectID($stateParams.diagramId));
             }
         }
     });
