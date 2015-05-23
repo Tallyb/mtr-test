@@ -6,39 +6,38 @@
 
             <md-input-container>
                 <label> Name</label>
-                <md-input type="text" name="name" id = "name" ng-model="DiagramSettingsCtrl.details.name" required>
-                </md-input>
+                <input type="text" name="name" id ="name" ng-model="dsc.diagramDetails.name" required>
             </md-input-container>
 
             <md-input-container>
                 <label> Description </label>
-                <textarea ng-model="DiagramSettingsCtrl.details.description" ></textarea>
+                <input ng-model="dsc.diagramDetails.description">
             </md-input-container>
 
             <label> Units </label> <br>
-            <md-select ng-model="DiagramSettingsCtrl.details.unit" required placeholder="Select Diagram Units">
-                <md-option ng-value="unit.name" ng-repeat="unit in DiagramSettingsCtrl.units.data">{{ unit.name }}</md-option>
+            <md-select ng-model="dsc.diagramDetails.unit" required placeholder="Select Diagram Units">
+                <md-option ng-value="unit.name" ng-repeat="unit in dsc.units">
+                    {{ unit.name }}
+                </md-option>
             </md-select>
             <p class="result">{{ unit.name }}</p>
 
             <md-input-container>
                 <label> Total intervals </label>
-                <md-input type="number" data-ng-model="DiagramSettingsCtrl.details.totalIntervals" required
-                          min="DiagramSettingsCtrl.minIntervals()" max="99" >
-                </md-input>
+                <input type="number" data-ng-model="dsc.diagramDetails.totalIntervals" required
+                          min="dsc.minIntervals()" max="99">
             </md-input-container>
 
             <md-input-container>
                 <label> start date</label>
-                <md-input name = "startDate" type="date">
-                </md-input>
+                <input name = "startDate" type="date">
             </md-input-container>
 
         </form>
 
         <div class="md-actions" layout="row">
             <md-button class="md-colored" ng-click="$mdDialog.cancel()">cancel</md-button>
-            <md-button type="submit" ng-click="DiagramSettingsCtrl.ok()" ng-disabled="Details.$invalid || Details.$pristine">OK</md-button>
+            <md-button type="submit" ng-click="dsc.ok()" ng-disabled="Details.$invalid || Details.$pristine">OK</md-button>
         </div>
     </md-content>
 

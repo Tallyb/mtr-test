@@ -4,21 +4,21 @@
 
 'use strict';
 
-angular.module('morffy').controller('diagramSettingsCtrl', function ($scope, $mdDialog, $log, $state, unitsSvc, $meteor, diagramDetails) {
+angular.module('morffy').controller('diagramSettingsCtrl', function ($mdDialog, $log, $state, unitsSvc, $meteor, diagramDetails) {
 
+    var vm = this;
+    vm.units = unitsSvc.get();
 
-    $scope.units = unitsSvc.get();
+    vm.diagramDetails = diagramDetails;
 
-    $scope.diagramDetails = diagramDetails;
-
-    $scope.ok = function () {
-        $scope.diagramDetails.save($scope.diagramDetails).then (function (response){
+    vm.ok = function () {
+        vm.diagramDetails.save(vm.diagramDetails).then (function (response){
             $mdDialog.hide();
             $state.go ('diagram.canvas', {diagramId: response._id});
         });
     };
 
-    $scope.cancel = function () {
+    vm.cancel = function () {
         $mdDialog.hide();
     };
 });

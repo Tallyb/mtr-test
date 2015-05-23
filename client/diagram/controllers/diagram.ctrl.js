@@ -16,6 +16,7 @@ angular.module('morffy').controller('DiagramCtrl', function DiagramCtrl  ($scope
         $mdDialog.show({
             templateUrl: 'client/diagram/views/diagram-settings.ng.html',
             controller: 'diagramSettingsCtrl',
+            controllerAs: 'dsc',
             resolve: {
                 diagramDetails: function () {
                     return ($scope.diagram);

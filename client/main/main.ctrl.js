@@ -12,6 +12,7 @@
             $mdDialog.show({
                 templateUrl: 'client/diagram/views/diagram-settings.ng.html',
                 controller: 'diagramSettingsCtrl',
+                controllerAs: 'dsc',
                 resolve: {
                     diagramDetails: function () {
                         return ({

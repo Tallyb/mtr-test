@@ -4,10 +4,6 @@
 
 DiagramsModel = new Mongo.Collection("diagrams" ,{idGeneration: 'MONGO'});
 
-var validateMilestone = function (diagram, milestone) {
-    return true;
-};
-
 
 Meteor.methods({
     createDiagram: function (diagram) {
@@ -25,6 +21,11 @@ Meteor.methods({
     },
 
     addMS: function (diagram, milestone) {
+        check (milestone, {
+            offset: Number,
+            code: String
+        });
+
         if (!diagram)
             throw new Meteor.Error(404, "No such diagram");
         if (milestone.offset > diagram.totalIntervals) {
@@ -39,9 +40,9 @@ Meteor.methods({
         milestone._id = new Meteor.ObjectId();
         diagram.milestones.push (milestone);
         DiagramsModel.update (diagram, function (err, res){
-            if (!err) return res;
+            if (err) {return err};
+            return res;
         });
-        return false;
     },
 
     removeMS: function (diagramId, milestoneId) {
