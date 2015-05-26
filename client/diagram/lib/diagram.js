@@ -3,14 +3,14 @@
  */
 'use strict';
 
-angular.module ('morffy.diagram', [
-    'angular-meteor',
-    'ngMaterial',
-    'ui.router',
-    'ngAnimate',
-    'morffy.canvas'
-])
-
+//angular.module ('morffy.diagram', [
+//    'angular-meteor',
+//    'ngMaterial',
+//    'ui.router',
+//    'ngAnimate',
+//    'morffy.canvas'
+//])
+angular.module ('morffy')
 .config (function ($stateProvider){
     $stateProvider.state ('diagram',{
         url: '/diagram/:diagramId',
@@ -19,10 +19,10 @@ angular.module ('morffy.diagram', [
         controller: 'DiagramCtrl',
         resolve: {
             diagram: function ($stateParams, $meteor) {
-                return $meteor.object (DiagramsModel, new Mongo.ObjectID( $stateParams.diagramId));
+                return $meteor.object (DiagramsModel, new Mongo.ObjectID( $stateParams.diagramId), false);
             },
             diagramElements: function ($stateParams, $meteor) {
-                return $meteor.subscribe('elements', new Mongo.ObjectID($stateParams.diagramId));
+                return $meteor.subscribe('diagramElements', new Mongo.ObjectID ($stateParams.diagramId));
             }
         }
     });

@@ -3,7 +3,7 @@
  */
 'use strict';
 
-angular.module ('morffy.diagram').directive ('diagramTimeline', function (){
+angular.module ('morffy').directive ('diagramTimeline', function (){
     function ctrl ($scope, TimelineSvc){
         $scope.timeline = TimelineSvc.get ($scope.diagram);
 

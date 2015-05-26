@@ -3,7 +3,7 @@
 */
 'use strict';
 
-angular.module('morffy.diagram').factory('TimelineSvc', function TimelineSvc($log, unitsSvc) {
+angular.module('morffy').factory('TimelineSvc', function TimelineSvc($log, unitsSvc) {
 
     function Interval(ind) {
         this.offset = ind;

@@ -1,20 +1,20 @@
-<md-dialog>
+<md-dialog flex-sm="80" flex-md="50" flex="33" >
     <md-content>
-        <md-subheader class="md-sticky-no-effect">Diagram Settings</md-subheader>
+        <h3 class="inset">Diagram Settings</h3>
 
-        <form name="Details" novalidate>
+        <form name="Details" novalidate class="inset">
 
             <md-input-container>
-                <label> Name</label>
+                <label > Name</label>
                 <input type="text" name="name" id ="name" ng-model="dsc.diagramDetails.name" required>
             </md-input-container>
 
-            <md-input-container>
+            <md-input-container >
                 <label> Description </label>
                 <input ng-model="dsc.diagramDetails.description">
             </md-input-container>
 
-            <label> Units </label> <br>
+            <p class="md-caption"> Units </p>
             <md-select ng-model="dsc.diagramDetails.unit" required placeholder="Select Diagram Units">
                 <md-option ng-value="unit.name" ng-repeat="unit in dsc.units">
                     {{ unit.name }}
@@ -36,8 +36,8 @@
         </form>
 
         <div class="md-actions" layout="row">
-            <md-button class="md-colored" ng-click="$mdDialog.cancel()">cancel</md-button>
-            <md-button type="submit" ng-click="dsc.ok()" ng-disabled="Details.$invalid || Details.$pristine">OK</md-button>
+            <md-button class="md-raised" ng-click="dsc.cancel()">cancel</md-button>
+            <md-button class="md-raised md-primary" type="submit" ng-click="dsc.ok()" ng-disabled="Details.$invalid || Details.$pristine">OK</md-button>
         </div>
     </md-content>
 

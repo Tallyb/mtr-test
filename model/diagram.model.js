@@ -4,20 +4,19 @@
 
 DiagramsModel = new Mongo.Collection("diagrams" ,{idGeneration: 'MONGO'});
 
-
 Meteor.methods({
     createDiagram: function (diagram) {
         diagram.userId = this.userId;
-
         var milestone = {
-            offset: NumberInt(0),
+            offset: 0,
             code: "BL"
         };
-        milestone._id = new Meteor.ObjectID();
+        milestone._id = new Mongo.ObjectID();
         diagram.milestones = [milestone];
-        DiagramsModel.insert(diagram, function (err, res){
-            if (!err) return res;
-        });
+        return DiagramsModel.insert(diagram);
+    },
+    updateDiagram:function (diagram, oldDiagram){
+         DiagramsModel.update ({_id: diagram._id},diagram) ;
     },
 
     addMS: function (diagram, milestone) {

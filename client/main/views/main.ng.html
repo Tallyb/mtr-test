@@ -1,8 +1,8 @@
-<div layout="column" layout-align="center">
+<div layout="column" layout-align="start">
     <md-toolbar class="md-medium-tall" layout="row" layout-align="space-around center">
-        <img src="img/logowhite.png" class="md-padding"/>
+        <img src="/img/logowhite.png" class="md-padding"/>
         <div layout = "row" flex-gt-md="50" layout-align="center center">
-            <md-button class="md-fab md-accent md-raised" aria-label="create"  ng-click="createDiagram()">
+            <md-button class="md-fab md-accent md-raised" aria-label="create"  ng-click="createDiagram($event)">
                 <i class="mdi mdi-plus"></i>
             </md-button>
             <span flex></span>
@@ -15,7 +15,7 @@
     <md-content layout="row" layout-margin layout-padding layout-wrap>
         <md-card ng-repeat="diagram in diagrams | filter:search" >
             <md-card-content>
-                <img src="img/dg.jpg" class="md-card-image" alt="diagram">
+                <img src="/img/dg.jpg" class="md-card-image" alt="diagram">
                 <h2 class="md-title">{{diagram.name}}</h2>
                 <div class="card-width">{{diagram.description}}</div>
             </md-card-content>

@@ -3,7 +3,7 @@
  */
 'use strict';
 
-angular.module('morffy.diagram').factory('unitsSvc', function units($log) {
+angular.module('morffy').factory('unitsSvc', function units($log) {
 
     var MONTHS_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 

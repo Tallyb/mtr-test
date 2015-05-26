@@ -4,4 +4,3 @@
 
 _ = lodash;
 
-ElementsModel = new Mongo.Collection ("elements");

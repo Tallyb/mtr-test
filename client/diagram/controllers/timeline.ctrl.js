@@ -7,7 +7,7 @@
  */
 'use strict';
 
-angular.module('morffy.diagram').controller('TimelineCtrl1', function TimelineCtrl ($stateParams, TimelineSvc, $mdDialog, $log, $scope, $state ) {
+angular.module('morffy').controller('TimelineCtrl1', function TimelineCtrl ($stateParams, TimelineSvc, $mdDialog, $log, $scope, $state ) {
 
     var vm = this;
     var dgId = $stateParams.diagramId;
@@ -89,7 +89,7 @@ angular.module('morffy.diagram').controller('TimelineCtrl1', function TimelineCt
     };
 });
 
-angular.module('morffy.diagram').controller('MilestoneEditCtrl', function MilestoneEditCtrl ($modalInstance, milestone) {
+angular.module('morffy').controller('MilestoneEditCtrl', function MilestoneEditCtrl ($modalInstance, milestone) {
 
     var vm = this;
     var dg = milestone.diagram_id;

@@ -12,14 +12,13 @@ angular.module('morffy').controller('diagramSettingsCtrl', function ($mdDialog, 
     vm.diagramDetails = diagramDetails;
 
     vm.ok = function () {
-        vm.diagramDetails.save(vm.diagramDetails).then (function (response){
+        return vm.$meteorCollection(DiagramsModel, false).save(vm.diagramDetails).then (function (response){
             $mdDialog.hide();
-            $state.go ('diagram.canvas', {diagramId: response._id});
         });
     };
 
     vm.cancel = function () {
-        $mdDialog.hide();
+        return $mdDialog.hide();
     };
 });
 

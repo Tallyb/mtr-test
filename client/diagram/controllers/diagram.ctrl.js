@@ -5,23 +5,38 @@
 'use strict';
 
 
-angular.module('morffy').controller('DiagramCtrl', function DiagramCtrl  ($scope, $mdDialog, $log, diagram, elements, TimelineSvc, $meteor ) {
+angular.module('morffy').controller('DiagramCtrl', function DiagramCtrl  ($scope, $mdDialog, $log, diagram, diagramElements, unitsSvc, $meteor, DiagramSvc) {
 
     $scope.diagram = diagram;
 
-    $scope.elements = elements;
+    $scope.elements = diagramElements;
 
+    $scope.editSettings = function ($event) {
 
-    $scope.editSettings = function () {
+        var controller = function (units, diagram){
+            var vm = this;
+            vm.units = units;
+            vm.diagramDetails = diagram;
+            vm.ok = function () {
+                $mdDialog.hide(vm.diagramDetails);
+            };
+            vm.cancel = function () {
+                return $mdDialog.cancel();
+            };
+        };
+
         $mdDialog.show({
             templateUrl: 'client/diagram/views/diagram-settings.ng.html',
-            controller: 'diagramSettingsCtrl',
+            controller: controller,
             controllerAs: 'dsc',
-            resolve: {
-                diagramDetails: function () {
-                    return ($scope.diagram);
-                }
-            }
+            targetEvent: $event,
+            locals: {
+                units: unitsSvc.get(),
+                diagram: $scope.diagram
+            },
+            bindToController: true
+        }).then (function (response){
+            DiagramSvc.update(response, $scope.diagram);
         });
     };
 

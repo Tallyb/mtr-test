@@ -11,7 +11,7 @@ angular.module('morffy',[
     'ngMaterial',
     'ui.router',
     'ngAnimate',
-    'morffy.diagram'
+    'morffy.canvas'
 ])
 
 .config (function ($mdThemingProvider){
@@ -58,14 +58,7 @@ angular.module('morffy',[
         });
 
         $mdThemingProvider.theme('default').primaryPalette('morffy').accentPalette ('morffyAlt');
-
 })
-
-//.config(function($mdIconProvider) {
-//    // Configure URLs for icons specified by [set:]id.
-//    $mdIconProvider
-//        .iconSet('mdi','public/fonts/mdi/fonts/materialdesignicons-webfont.svg');       // Register mdi set of SVG icons
-//})
 
 .config(function  ( $stateProvider, $urlRouterProvider,$locationProvider ){
     $locationProvider.html5Mode(true);
@@ -73,10 +66,49 @@ angular.module('morffy',[
     $stateProvider.state('main', {
         url: '/',
         templateUrl: 'client/main/views/main.ng.html',
-        controller: 'HomeCtrl'
+        controller: 'MainCtrl',
+        resolve: {
+            diagramsCollection: function ( DiagramSvc){
+               return  DiagramSvc.getAll();
+            }
+        }
     });
 
     $urlRouterProvider.otherwise( '/' );
 
-});
+})
+
+
+    .run(function ($rootScope, $location) {
+        // Redirect to login if route requires auth and you're not logged in
+        //$rootScope.$on('$stateChangeStart', function (event, next) {
+        //    Auth.isLoggedInAsync(function(loggedIn) {
+        //        if (next.authenticate && !loggedIn) {
+        //            $location.path('/login');
+        //        }
+        //    });
+        //});
+
+        $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
+            console.log('$stateChangeError - fired when an error occurs during transition.');
+            console.log(arguments);
+            console.log("error is: " + error);
+        });
+
+        $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+            console.log('$stateChangeSuccess to ' + toState.name + '- fired once the state transition is complete.');
+        });
+
+        $rootScope.$on('$viewContentLoaded', function (event) {
+            console.log('$viewContentLoaded - fired after dom rendered', event);
+        });
+
+        $rootScope.$on('$stateNotFound', function (event, unfoundState, fromState, fromParams) {
+            console.log('$stateNotFound ' + unfoundState.to + '  - fired when a state cannot be found by its name.');
+            console.log(unfoundState, fromState, fromParams);
+        });
+    });
+
+
+;
 
