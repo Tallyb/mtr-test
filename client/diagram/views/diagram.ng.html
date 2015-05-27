@@ -2,7 +2,7 @@
     <md-toolbar class="md-medium-tall" >
         <div layout="row" layout-align="space-between center">
             <div flex="25" layout="row" layout-align = "start center" layout-padding>
-                <md-button  ui-sref="main" >
+                <md-button  ui-sref="main" aria-label="home">
                     <i class="mdi mdi-home"></i>
                 </md-button>
                 <h3>{{diagram.name}} </h3>
@@ -18,7 +18,7 @@
                 <md-button ng-click="editSettings($event)" aria-label="settings">
                     <i class="mdi mdi-settings"> </i>
                 </md-button>
-                <div ng-mouseover="zoom=true" ng-mouseleave="zoom=false">
+                <div ng-mouseover="zoom=true" ng-mouseleave="zoom=false" layout="row">
                     <md-button ng-click="zoomin()" ng-show="zoom" aria-label="zoom in">
                         <i class="mdi mdi-magnify-minus"> </i>
                     </md-button>

@@ -66,12 +66,7 @@ angular.module('morffy',[
     $stateProvider.state('main', {
         url: '/',
         templateUrl: 'client/main/views/main.ng.html',
-        controller: 'MainCtrl',
-        resolve: {
-            diagramsCollection: function ( DiagramSvc){
-               return  DiagramSvc.getAll();
-            }
-        }
+        controller: 'MainCtrl'
     });
 
     $urlRouterProvider.otherwise( '/' );

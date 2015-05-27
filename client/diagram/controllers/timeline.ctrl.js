@@ -7,7 +7,7 @@
  */
 'use strict';
 
-angular.module('morffy').controller('TimelineCtrl1', function TimelineCtrl ($stateParams, TimelineSvc, $mdDialog, $log, $scope, $state ) {
+angular.module('morffy').controller('TimelineCtrl1', function TimelineCtrl ($stateParams, TimelineSvc, $mdDialog, $log, $scope ) {
 
     var vm = this;
     var dgId = $stateParams.diagramId;

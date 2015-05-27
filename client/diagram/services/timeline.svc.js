@@ -3,7 +3,7 @@
 */
 'use strict';
 
-angular.module('morffy').factory('TimelineSvc', function TimelineSvc($log, unitsSvc) {
+angular.module('morffy').factory('TimelineSvc', function TimelineSvc($log, unitsSvc, DiagramSvc) {
 
     function Interval(ind) {
         this.offset = ind;
@@ -41,21 +41,9 @@ angular.module('morffy').factory('TimelineSvc', function TimelineSvc($log, units
 
     return {
 
-        get: function (diagram) {
-            var v;
-            var intervals = [];
-            for (var i = 0; i < diagram.totalIntervals; i++) {
-                v = new Interval(i);
-                v.label = unitsSvc.calculateLabel(i, diagram.unit, diagram.startDate);
-                intervals.push(v);
-            }
-            // setting milestones according to diagram data
-            _.each(diagram.milestones, function (e) {
-                if (e.offset < diagram.totalIntervals) {
-                    intervals [e.offset].ms = e;
-                }
-            });
-            return intervals;
+        get: function () {
+            var diagram = DiagramSvc.diagramObject;
+            return generateIntervals(diagram);
         },
 
         getAdjunctMS: function (intervals, dir, offset) {

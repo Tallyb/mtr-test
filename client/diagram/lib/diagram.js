@@ -16,15 +16,7 @@ angular.module ('morffy')
         url: '/diagram/:diagramId',
         abstract: true,
         templateUrl: 'client/diagram/views/diagram.ng.html',
-        controller: 'DiagramCtrl',
-        resolve: {
-            diagram: function ($stateParams, $meteor) {
-                return $meteor.object (DiagramsModel, new Mongo.ObjectID( $stateParams.diagramId), false);
-            },
-            diagramElements: function ($stateParams, $meteor) {
-                return $meteor.subscribe('diagramElements', new Mongo.ObjectID ($stateParams.diagramId));
-            }
-        }
+        controller: 'DiagramCtrl'
     });
 
     $stateProvider.state ('diagram.canvas',{

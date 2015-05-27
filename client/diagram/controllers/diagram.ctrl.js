@@ -5,34 +5,30 @@
 'use strict';
 
 
-angular.module('morffy').controller('DiagramCtrl', function DiagramCtrl  ($scope, $mdDialog, $log, diagram, diagramElements, unitsSvc, $meteor, DiagramSvc) {
+angular.module('morffy').controller('DiagramCtrl', function DiagramCtrl  ($scope, $mdDialog, $log, TimelineSvc, unitsSvc, $meteor, $stateParams, DiagramSvc) {
 
-    $scope.diagram = diagram;
+    $scope.dgId = $stateParams.diagramId;
+    Session.set ('currentDiagramId',$scope.dgId);
 
-    $scope.elements = diagramElements;
+    var diagramDep = new Tracker.Dependency;
+
+    $meteor.autorun($scope, function () {
+        console.log('diagram changed', Session.get('currentDiagramId'));
+        $scope.diagram = DiagramSvc.diagramObject;
+        $log.info ($scope.diagram);
+        $scope.timeline = TimelineSvc.get($scope.diagram);
+        $scope.elements = DiagramSvc.diagramElements;
+    });
 
     $scope.editSettings = function ($event) {
 
-        var controller = function (units, diagram){
-            var vm = this;
-            vm.units = units;
-            vm.diagramDetails = diagram;
-            vm.ok = function () {
-                $mdDialog.hide(vm.diagramDetails);
-            };
-            vm.cancel = function () {
-                return $mdDialog.cancel();
-            };
-        };
-
         $mdDialog.show({
             templateUrl: 'client/diagram/views/diagram-settings.ng.html',
-            controller: controller,
+            controller: 'diagramSettingsCtrl',
             controllerAs: 'dsc',
             targetEvent: $event,
             locals: {
-                units: unitsSvc.get(),
-                diagram: $scope.diagram
+                diagramDetails: $scope.diagram
             },
             bindToController: true
         }).then (function (response){

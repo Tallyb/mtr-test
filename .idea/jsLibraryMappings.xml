@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{Node.js v0.10.31 Core Modules, Node.js v0.10.36 Core Modules, angular-local-storage-DefinitelyTyped, angular-material-DefinitelyTyped, angular-ui-bootstrap-DefinitelyTyped, angular-ui-router-DefinitelyTyped, angularjs-DefinitelyTyped, auth0-DefinitelyTyped, jasmine-DefinitelyTyped, lodash-DefinitelyTyped, meteor-DefinitelyTyped}" />
+    <file url="PROJECT" libraries="{Node.js v0.10.31 Core Modules, Node.js v0.10.36 Core Modules, angular-local-storage-DefinitelyTyped, angular-material-DefinitelyTyped, angular-meteor-DefinitelyTyped, angular-ui-bootstrap-DefinitelyTyped, angular-ui-router-DefinitelyTyped, angularjs-DefinitelyTyped, auth0-DefinitelyTyped, jasmine-DefinitelyTyped, lodash-DefinitelyTyped, meteor-DefinitelyTyped}" />
     <includedPredefinedLibrary name="Meteor project library" />
     <includedPredefinedLibrary name="Node.js Globals" />
   </component>

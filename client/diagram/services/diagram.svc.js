@@ -7,37 +7,17 @@
 
 angular.module('morffy').factory('DiagramSvc', function ($log, $meteor, $rootScope) {
 
-    var diagramsCollection = $meteor.collection(DiagramsModel).subscribe('diagrams');
-
     return {
 
-        getAll: function (){
-          return diagramsCollection;
-        },
+        diagramObject: $meteor.object (DiagramsModel, new Mongo.ObjectID(Session.get ('currentDiagramId'))),
 
-        get: function (dgId) {
-            return $meteor.object (DiagramsModel, new Mongo.ObjectID( dgId));
-        },
-
-        add: function (diagram) {
-            diagram.userId = $rootScope.currentUser._id;
-            var milestone = {
-                offset: 0,
-                code: "BL"
-            };
-            milestone._id = new Mongo.ObjectID();
-            diagram.milestones = [milestone];
-            return diagramsCollection.save(diagram);
-        },
+        diagramElements: $meteor.subscribe('diagramElements', new Mongo.ObjectID (Session.get ('currentDiagramId'))),
 
         update: function (dg) {
-            dg.save ();
-        },
-
-        remove: function (dgId) {
-            DiagramsModel.remove (dgId);
-
+            $meteor.collection(DiagramsModel).save (dg);
+            $log.info ('saving diagram'+dg);
         }
+
 
     };
 

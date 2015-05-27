@@ -3,46 +3,37 @@
  */
 
 'use strict';
-angular.module('morffy').controller('MainCtrl', function ($scope, $log, $state, diagramsCollection, $mdDialog, unitsSvc, DiagramSvc) {
+angular.module('morffy').controller('MainCtrl', function ($scope, $log, $state, $mdDialog, unitsSvc, DiagramsSvc) {
 
-    $scope.diagrams = diagramsCollection;
+    $scope.diagrams = DiagramsSvc.get();
+    Session.set('currentDiagramId', undefined);
 
     /* adding a diagram in a modal window when pressing the new diagram button and going to the diagram screen */
     $scope.createDiagram = function ($event) {
 
-        var controller = function (units){
-            var vm = this;
-            vm.units = units;
-            vm.diagramDetails = {};
-            vm.ok = function () {
-                $mdDialog.hide(vm.diagramDetails);
-            };
-            vm.cancel = function () {
-                return $mdDialog.cancel();
-            };
-        };
-
         $mdDialog.show({
             templateUrl: 'client/diagram/views/diagram-settings.ng.html',
-            controller: controller,
+            controller: 'diagramSettingsCtrl',
             controllerAs: 'dsc',
             targetEvent: $event,
             locals: {
-                units: unitsSvc.get()
+                diagramDetails: {}
             },
             bindToController: true
         }).then (function (response){
-            DiagramSvc.add (response).then (function (response){
-                $state.go ('diagram.canvas', {diagramId: response._id._str});
+            DiagramsSvc.add (response).then (function (response){
+                $log.info ('added diagram: ' +response);
+                $state.go ('diagram.canvas', {diagramId: response[0]._id._str});
             });
         });
     };
 
     $scope.deleteDiagram = function (dg){
-        DiagramSvc.remove (dg._id);
+        DiagramsSvc.remove (dg._id);
     };
 
     $scope.openDiagram = function (dgId) {
+        console.log (dgId);
         $state.go ('diagram.canvas', {diagramId: dgId._str});
     };
 });
